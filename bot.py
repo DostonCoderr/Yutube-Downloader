@@ -1,9 +1,15 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from dotenv import load_dotenv
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters
 import yt_dlp
 import os
 import logging
 import time
+
+
+
+# Load environment variables from the .env file
+load_dotenv()
 
 # Path for storing downloaded files
 DOWNLOAD_DIR = "downloads"
@@ -116,7 +122,7 @@ async def download_file(query, url, file_type):
 # Main function to run the bot
 def main():
     # Replace with your bot token
-    TOKEN = "7510223493:AAEAaYXfAMflMx6vDXxE4kM6XmQ_1sS-Za0"
+    TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
     application = ApplicationBuilder().token(TOKEN).build()
 
